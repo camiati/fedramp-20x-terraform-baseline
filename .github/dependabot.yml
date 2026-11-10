@@ -1,4 +1,4 @@
-# Dependabot configuration for aws-federal-baseline
+# Dependabot configuration for fedramp-20x-terraform-baseline
 #
 # Watches two kinds of dependencies and opens pull requests for updates:
 #   - GitHub Actions used in .github/workflows/ (pinned to commit SHAs)

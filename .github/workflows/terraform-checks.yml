@@ -1,4 +1,4 @@
-# Terraform checks for aws-federal-baseline
+# Terraform checks for fedramp-20x-terraform-baseline
 #
 # Runs on every pull request and every push to main:
 #   1. Format check: code follows Terraform's standard style

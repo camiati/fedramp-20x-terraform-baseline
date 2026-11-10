@@ -15,6 +15,7 @@ Companion to [The Grid](https://github.com/camiati/The-Grid), a reference guide 
 | `cloudwatch.tf` | CloudWatch Logs group receiving CloudTrail events, and the role CloudTrail uses to write to it | AC&#8209;6, AU&#8209;6, AU&#8209;11, SC&#8209;28 |
 | `guardduty.tf` | Threat detection, including S3 Protection | SI&#8209;4, IR&#8209;4 |
 | `config.tf` | Records every resource's configuration and change history | CM&#8209;2, CM&#8209;3, CM&#8209;8, CA&#8209;7 |
+| `alerting.tf` | CIS AWS Foundations metric filters and alarms on CloudTrail events, publishing to an encrypted SNS topic | AC&#8209;6, AU&#8209;6, IR&#8209;4, SC&#8209;12, SC&#8209;13, SC&#8209;28, SI&#8209;4 |
 | `securityhub.tf` | Security Hub CSPM, checking resources against the NIST SP 800-53 Rev. 5 standard | CA&#8209;2, CA&#8209;7, CM&#8209;6, SI&#8209;4 |
 | `providers.tf` | Terraform and AWS provider versions | |
 | [`RISK_ACCEPTANCES.md`](./RISK_ACCEPTANCES.md) | Accepted risks and planned remediations, with justifications and dates | |
@@ -33,7 +34,7 @@ Every pull request runs three checks. None of them touch AWS, and no credentials
 | Validate | `terraform validate` | Syntax errors and broken references |
 | Security scan | Checkov | Security misconfigurations |
 
-Current result: 61 passed, 0 failed, 8 skipped. Every skip is either a documented risk acceptance or a planned remediation, tracked in the [risk register](./RISK_ACCEPTANCES.md).
+Current result: 82 passed, 0 failed, 8 skipped. Every skip is either a documented risk acceptance or a planned remediation, tracked in the [risk register](./RISK_ACCEPTANCES.md).
 
 ## Repository controls
 
@@ -51,12 +52,11 @@ Current result: 61 passed, 0 failed, 8 skipped. Every skip is either a documente
 - **Checkov's version is updated by hand.** It's installed inside a workflow command, which Dependabot can't see.
 - **Validated, not deployed.** CI checks the code without an AWS account.
 - **One account, one Region.** CloudTrail covers all Regions, but GuardDuty, Config, and Security Hub run in one. Organization-wide coverage is a planned remediation.
-- **No real-time alerting yet.** CloudTrail streams to CloudWatch Logs, but no metric filters or alarms exist yet. Also a planned remediation.
+- **Alarms have no subscribers.** Who gets notified is a deployment decision, so the SNS topic has no subscriptions in code.
 
 ## Roadmap
 
-1. CloudWatch alerting on CloudTrail events
-2. A multi-account baseline with AWS Organizations
-3. GitHub Actions authenticating to AWS through OIDC, with no stored keys
-4. A signed container pipeline with an SBOM and build provenance
-5. A machine-readable SSP in OSCAL, generated from the control annotations
+1. A multi-account baseline with AWS Organizations
+2. GitHub Actions authenticating to AWS through OIDC, with no stored keys
+3. A signed container pipeline with an SBOM and build provenance
+4. A machine-readable SSP in OSCAL, generated from the control annotations

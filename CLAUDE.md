@@ -42,8 +42,7 @@ A public portfolio project: a Terraform AWS security baseline mapped to NIST SP 
 
 ## Roadmap
 
-1. CloudWatch alerting on CloudTrail events (planned remediation CKV2_AWS_10)
-2. Multi-account baseline with AWS Organizations (planned remediation CKV2_AWS_3)
-3. GitHub Actions authenticating to AWS through OIDC
-4. Signed container pipeline with SBOM and build provenance
-5. OSCAL SSP generated from control annotations
+1. Multi-account baseline with AWS Organizations (planned remediation CKV2_AWS_3)
+2. GitHub Actions authenticating to AWS through OIDC
+3. Signed container pipeline with SBOM and build provenance
+4. OSCAL SSP generated from control annotations

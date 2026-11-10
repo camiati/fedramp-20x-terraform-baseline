@@ -11,7 +11,8 @@ Companion to [The Grid](https://github.com/camiati/The-Grid), a reference guide 
 | `s3_evidence.tf` | Hardened S3 bucket for audit evidence | AC&#8209;3, AC&#8209;6, AU&#8209;2, AU&#8209;9, AU&#8209;12, CP&#8209;9, SC&#8209;7, SC&#8209;8, SC&#8209;28, SI&#8209;12 |
 | `s3_access_logs.tf` | Bucket receiving the evidence bucket's access logs | AC&#8209;3, AC&#8209;6, AU&#8209;9, AU&#8209;11, SC&#8209;7, SC&#8209;8, SC&#8209;28 |
 | `kms.tf` | Customer-managed key encrypting audit logs, with automatic rotation | SC&#8209;12, SC&#8209;13 |
-| `cloudtrail.tf` | Multi-Region trail recording every management API call, with log file validation | AU&#8209;2, AU&#8209;3, AU&#8209;9, AU&#8209;12, SC&#8209;28 |
+| `cloudtrail.tf` | Multi-Region trail recording every management API call, with log file validation and streaming to CloudWatch Logs | AU&#8209;2, AU&#8209;3, AU&#8209;6, AU&#8209;9, AU&#8209;12, SC&#8209;28 |
+| `cloudwatch.tf` | CloudWatch Logs group receiving CloudTrail events, and the role CloudTrail uses to write to it | AC&#8209;6, AU&#8209;6, AU&#8209;11, SC&#8209;28 |
 | `guardduty.tf` | Threat detection, including S3 Protection | SI&#8209;4, IR&#8209;4 |
 | `config.tf` | Records every resource's configuration and change history | CM&#8209;2, CM&#8209;3, CM&#8209;8, CA&#8209;7 |
 | `securityhub.tf` | Security Hub CSPM, checking resources against the NIST SP 800-53 Rev. 5 standard | CA&#8209;2, CA&#8209;7, CM&#8209;6, SI&#8209;4 |
@@ -32,7 +33,7 @@ Every pull request runs three checks. None of them touch AWS, and no credentials
 | Validate | `terraform validate` | Syntax errors and broken references |
 | Security scan | Checkov | Security misconfigurations |
 
-Current result: 43 passed, 0 failed, 9 skipped. Every skip is either a documented risk acceptance or a planned remediation, tracked in the [risk register](./RISK_ACCEPTANCES.md).
+Current result: 61 passed, 0 failed, 8 skipped. Every skip is either a documented risk acceptance or a planned remediation, tracked in the [risk register](./RISK_ACCEPTANCES.md).
 
 ## Repository controls
 
@@ -50,7 +51,7 @@ Current result: 43 passed, 0 failed, 9 skipped. Every skip is either a documente
 - **Checkov's version is updated by hand.** It's installed inside a workflow command, which Dependabot can't see.
 - **Validated, not deployed.** CI checks the code without an AWS account.
 - **One account, one Region.** CloudTrail covers all Regions, but GuardDuty, Config, and Security Hub run in one. Organization-wide coverage is a planned remediation.
-- **No real-time alerting yet.** CloudTrail isn't yet connected to CloudWatch alarms. Also a planned remediation.
+- **No real-time alerting yet.** CloudTrail streams to CloudWatch Logs, but no metric filters or alarms exist yet. Also a planned remediation.
 
 ## Roadmap
 

@@ -20,7 +20,7 @@ Gaps that will be fixed, not accepted. These work like POA&M items: each has a t
 
 | Check | Resource | Gap | Planned fix | Controls | Target |
 |---|---|---|---|---|---|
-| CKV2_AWS_10: CloudWatch Logs integration | `aws_cloudtrail.baseline` | No real-time alerting on CloudTrail events, such as root logins or IAM policy changes | Send CloudTrail to an encrypted CloudWatch Logs group with metric filters and alarms, in the monitoring pull request | AU&#8209;6, SI&#8209;4 | QX YYYY |
+| CKV2_AWS_10: CloudWatch Logs integration | `aws_cloudtrail.baseline`, `aws_cloudwatch_log_group.cloudtrail` | No real-time alerting on CloudTrail events, such as root logins or IAM policy changes | Done: CloudTrail streams to an encrypted CloudWatch Logs group. Remaining: metric filters, alarms, and an encrypted SNS topic, in the alerting pull request | AU&#8209;6, SI&#8209;4 | QX YYYY |
 | CKV2_AWS_3: GuardDuty organization coverage | `aws_guardduty_detector.baseline` | Threat detection runs in one Region of one account, while CloudTrail covers all Regions | Enable GuardDuty across all accounts and Regions through AWS Organizations with a delegated administrator, in the multi-account baseline | SI&#8209;4, IR&#8209;4 | QX YYYY |
 
 ## Process

@@ -10,7 +10,7 @@
 # SC-28: logs encrypted with the customer-managed audit log key.
 # AU-6: stream events to CloudWatch Logs for real-time alerting.
 resource "aws_cloudtrail" "baseline" {
-  #checkov:skip=CKV_AWS_252:Per-file delivery notifications aren't actionable; alerting comes from GuardDuty and Security Hub. See RISK_ACCEPTANCES.md.
+  #checkov:skip=CKV_AWS_252:Per-file delivery notifications aren't actionable; alerting comes from CloudWatch alarms, GuardDuty, and Security Hub. See RISK_ACCEPTANCES.md.
   name                          = local.trail_name
   s3_bucket_name                = aws_s3_bucket.evidence.id
   s3_key_prefix                 = "cloudtrail"

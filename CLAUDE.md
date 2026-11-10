@@ -42,9 +42,8 @@ A public portfolio project: a Terraform AWS security baseline mapped to NIST SP 
 
 ## Roadmap
 
-1. AWS Config and Security Hub CSPM with the NIST SP 800-53 standard
-2. CloudWatch alerting on CloudTrail events (planned remediation CKV2_AWS_10)
-3. Multi-account baseline with AWS Organizations (planned remediation CKV2_AWS_3)
-4. GitHub Actions authenticating to AWS through OIDC
-5. Signed container pipeline with SBOM and build provenance
-6. OSCAL SSP generated from control annotations
+1. CloudWatch alerting on CloudTrail events (planned remediation CKV2_AWS_10)
+2. Multi-account baseline with AWS Organizations (planned remediation CKV2_AWS_3)
+3. GitHub Actions authenticating to AWS through OIDC
+4. Signed container pipeline with SBOM and build provenance
+5. OSCAL SSP generated from control annotations
